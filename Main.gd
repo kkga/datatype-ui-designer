@@ -1,48 +1,71 @@
+class_name Main
 extends Control
 
-onready var ui_panel: = $MarginContainer/HBoxContainer/RightSide/PanelContainer/UIPanelContainer
+signal property_list_updated()
 
-enum DataTypes { BOOLEAN, OPTION, NUMBER, STRING }
+onready var prop_item_list: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/PropertyItemList
+onready var add_button: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/HBoxContainer/AddButton
+onready var delete_button: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton
+onready var prop_config: = $MarginContainer/HBoxContainer/LeftSide/PropConfigContainer/PropertyConfig
+onready var output: = $MarginContainer/HBoxContainer/RightSide/PanelContainer/OutputContainer
 
-const LABEL_WIDTH = 48
-const CONTROL_WIDTH = 172
+enum DataTypes { BOOLEAN, OPTION, NUMBER }
 
+var property_list: = []
 
-func create_property_control(property: String, data_type: int, data_hints: = {}) -> Control:
-	var container: = HBoxContainer.new()
-
-	var label: = Label.new()
-	var control: Control
-
-	label.text = property
-
-	match data_type:
-		DataTypes.BOOLEAN:
-			control = CheckBox.new()
-		DataTypes.OPTION:
-			control = OptionButton.new()
-
-	label.rect_min_size.x = LABEL_WIDTH
-	control.rect_min_size.x = CONTROL_WIDTH
-
-	container.add_child(label)
-	container.add_child(control)
-
-	return container
+var property_dict: = {
+	name = "",
+	type = 0,
+}
 
 
-func add_control(control: Control) -> void:
-	ui_panel.add_child(control)
+func _ready() -> void:
+	connect("property_list_updated", self, "_on_property_list_updated")
+
+
+func add_property() -> void:
+	var new_property: = property_dict.duplicate()
+	new_property.name = "new property"
+	new_property.type = DataTypes.BOOLEAN
+
+	property_list.append(new_property)
+
+	emit_signal("property_list_updated")
 
 
 # SIGNAL CALLBACKS =============================================================
 
 
-func _on_BoolButton_pressed() -> void:
-	var control := create_property_control('my_bool', DataTypes.BOOLEAN)
-	add_control(control)
+func _on_AddButton_pressed() -> void:
+	add_property()
 
 
-func _on_OptionButton_pressed() -> void:
-	var control := create_property_control('my_enum', DataTypes.OPTION)
-	add_control(control)
+func _on_DeleteButton_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_property_list_updated() -> void:
+	print(property_list)
+
+	prop_item_list.create_items(property_list)
+	output.create_controls(property_list)
+
+
+func _on_PropertyItemList_nothing_selected() -> void:
+	delete_button.disabled = true
+
+
+func _on_PropertyItemList_item_selected(index: int) -> void:
+	delete_button.disabled = false
+	prop_config.update_fields(property_list[index])
+
+
+func _on_PropertyConfig_value_changed(property, value) -> void:
+	var selected_property = property_list[prop_item_list.get_selected_items()[0]]
+	match property:
+		"name":
+			selected_property.name = value
+		"type":
+			selected_property.type = value
+	emit_signal("property_list_updated")
+
