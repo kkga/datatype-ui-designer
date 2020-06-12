@@ -29,10 +29,14 @@ func _create_property_control(property: String, type: int, hint: String) -> Cont
 			control = CheckBox.new()
 		Main.DataTypes.OPTION:
 			control = OptionButton.new()
+			var options = hint.split(', ')
+			for option in options:
+				control.add_item(option)
 
 	print(hint)
 
 	label.rect_min_size.x = LABEL_WIDTH
+	label.clip_text = true
 	control.rect_min_size.x = CONTROL_WIDTH
 
 	container.add_child(label)

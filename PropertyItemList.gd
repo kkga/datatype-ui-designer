@@ -8,6 +8,9 @@ extends ItemList
 ##	if selected_item:
 ##		select(selected_item)
 
+func _ready() -> void:
+	clear()
+
 
 func update_item(index: int, name: String) -> void:
 	set_item_text(index, name)

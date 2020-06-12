@@ -1,36 +1,66 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=6 format=2]
 
 [ext_resource path="res://resources/label_small.tres" type="DynamicFont" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color( 0.168627, 0.168627, 0.168627, 1 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
+anti_aliasing = false
 
 [resource]
 default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource( 9 )
+Button/styles/pressed = null
 ItemList/colors/font_color = Color( 0.63, 0.63, 0.63, 1 )
 ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
-ItemList/colors/guide_color = Color( 0, 0, 0, 0.1 )
-ItemList/constants/hseparation = 4
-ItemList/constants/icon_margin = 4
-ItemList/constants/line_separation = 2
-ItemList/constants/vseparation = 2
+ItemList/colors/guide_color = Color( 0.301961, 0.301961, 0.301961, 1 )
+ItemList/constants/hseparation = 0
+ItemList/constants/icon_margin = 8
+ItemList/constants/line_separation = 8
+ItemList/constants/vseparation = 4
 ItemList/fonts/font = null
-ItemList/styles/bg = SubResource( 3 )
+ItemList/styles/bg = SubResource( 8 )
 ItemList/styles/bg_focus = SubResource( 4 )
-ItemList/styles/cursor = SubResource( 5 )
-ItemList/styles/cursor_unfocused = SubResource( 6 )
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
 ItemList/styles/selected = SubResource( 2 )
-ItemList/styles/selected_focus = SubResource( 7 )
+ItemList/styles/selected_focus = SubResource( 2 )

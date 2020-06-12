@@ -4,6 +4,7 @@ signal value_changed(property, value)
 
 onready var name_field: = $MarginContainer/VBoxContainer/HBoxContainer/NameField
 onready var type_field: = $MarginContainer/VBoxContainer/HBoxContainer2/TypeField
+onready var hint_field: = $MarginContainer/VBoxContainer/HBoxContainer3/HintField
 
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 func update_fields(property: Dictionary) -> void:
 	name_field.text = property.name
 	type_field.select(property.type)
+	hint_field.text = property.hint
 
 
 # SIGNAL CALLBACKS =============================================================

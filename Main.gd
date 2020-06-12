@@ -40,6 +40,7 @@ func add_property() -> void:
 	property_list.append(new_property)
 
 	emit_signal("property_added", new_property)
+	emit_signal("property_list_updated", property_list)
 
 
 func update_property(index:int, config_property: String, value) -> void:
