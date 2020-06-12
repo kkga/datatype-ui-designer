@@ -7,7 +7,7 @@ const CONTROL_WIDTH = 172
 func create_controls(property_list: Array) -> void:
 	_clear()
 	for prop in property_list:
-		var control: = _create_property_control(prop.name, prop.type)
+		var control: = _create_property_control(prop.name, prop.type, prop.hint)
 		add_child(control)
 
 
@@ -16,7 +16,7 @@ func _clear() -> void:
 		child.queue_free()
 
 
-func _create_property_control(property: String, type: int, hints: = {}) -> Control:
+func _create_property_control(property: String, type: int, hint: String) -> Control:
 	var container: = HBoxContainer.new()
 
 	var label: = Label.new()
@@ -29,6 +29,8 @@ func _create_property_control(property: String, type: int, hints: = {}) -> Contr
 			control = CheckBox.new()
 		Main.DataTypes.OPTION:
 			control = OptionButton.new()
+
+	print(hint)
 
 	label.rect_min_size.x = LABEL_WIDTH
 	control.rect_min_size.x = CONTROL_WIDTH

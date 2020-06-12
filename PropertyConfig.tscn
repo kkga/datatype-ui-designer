@@ -19,7 +19,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 320.0
-margin_bottom = 72.0
+margin_bottom = 104.0
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -29,7 +29,7 @@ custom_constants/margin_bottom = 8
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 312.0
-margin_bottom = 64.0
+margin_bottom = 96.0
 custom_constants/separation = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -75,26 +75,24 @@ items = [ "Boolean", null, false, 0, null, "Option", null, false, 1, null, "Numb
 selected = 0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
 margin_top = 64.0
 margin_right = 304.0
-margin_bottom = 163.0
+margin_bottom = 88.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_top = 42.0
+margin_top = 5.0
 margin_right = 80.0
-margin_bottom = 56.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 80, 0 )
-text = "Options"
+text = "Hint"
 
-[node name="LineEdit" type="ItemList" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="HintField" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 88.0
 margin_right = 304.0
-margin_bottom = 99.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
-items = [ "Boolean", null, false, "0", null, true, "[Object:null]", null, true, "Null", null, false, "False", null, false ]
-auto_height = true
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer/NameField" to="." method="_on_NameField_text_changed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer2/TypeField" to="." method="_on_TypeField_item_selected"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/HintField" to="." method="_on_HintField_text_changed"]

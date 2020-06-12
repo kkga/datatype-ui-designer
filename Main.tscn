@@ -51,22 +51,22 @@ __meta__ = {
 }
 
 [node name="LeftSide" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 656.0
+margin_right = 616.0
 margin_bottom = 560.0
 size_flags_horizontal = 2
 custom_constants/separation = 16
 
 [node name="PropListContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide"]
-margin_right = 320.0
+margin_right = 280.0
 margin_bottom = 560.0
-rect_min_size = Vector2( 320, 0 )
+rect_min_size = Vector2( 280, 0 )
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide/PropListContainer"]
-margin_right = 320.0
+margin_right = 280.0
 margin_bottom = 20.0
 custom_constants/separation = 8
 
@@ -79,10 +79,11 @@ __meta__ = {
 }
 
 [node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 227.0
-margin_right = 320.0
+margin_left = 187.0
+margin_right = 280.0
 margin_bottom = 20.0
 size_flags_horizontal = 10
+disabled = true
 text = "Delete Property"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -90,15 +91,17 @@ __meta__ = {
 
 [node name="PropertyItemList" type="ItemList" parent="MarginContainer/HBoxContainer/LeftSide/PropListContainer"]
 margin_top = 28.0
-margin_right = 320.0
+margin_right = 280.0
 margin_bottom = 560.0
 size_flags_vertical = 3
+allow_reselect = true
+allow_rmb_select = true
 auto_height = true
 script = ExtResource( 4 )
 
 [node name="PropConfigContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide"]
-margin_left = 336.0
-margin_right = 656.0
+margin_left = 296.0
+margin_right = 616.0
 margin_bottom = 560.0
 rect_min_size = Vector2( 320, 0 )
 custom_constants/separation = 8
@@ -107,6 +110,8 @@ __meta__ = {
 }
 
 [node name="PropertyConfig" parent="MarginContainer/HBoxContainer/LeftSide/PropConfigContainer" instance=ExtResource( 3 )]
+visible = false
+margin_bottom = 104.0
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 margin_left = 720.0

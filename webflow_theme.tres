@@ -1,6 +1,36 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://resources/label_small.tres" type="DynamicFont" id=1]
 
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=2]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id=7]
+
 [resource]
 default_font = ExtResource( 1 )
+ItemList/colors/font_color = Color( 0.63, 0.63, 0.63, 1 )
+ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 0.1 )
+ItemList/constants/hseparation = 4
+ItemList/constants/icon_margin = 4
+ItemList/constants/line_separation = 2
+ItemList/constants/vseparation = 2
+ItemList/fonts/font = null
+ItemList/styles/bg = SubResource( 3 )
+ItemList/styles/bg_focus = SubResource( 4 )
+ItemList/styles/cursor = SubResource( 5 )
+ItemList/styles/cursor_unfocused = SubResource( 6 )
+ItemList/styles/selected = SubResource( 2 )
+ItemList/styles/selected_focus = SubResource( 7 )

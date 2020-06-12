@@ -24,3 +24,7 @@ func _on_NameField_text_changed(new_text: String) -> void:
 
 func _on_TypeField_item_selected(id: int) -> void:
 	emit_signal("value_changed", "type", id)
+
+
+func _on_HintField_text_changed(new_text: String) -> void:
+	emit_signal("value_changed", "hint", new_text)
