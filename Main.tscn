@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://webflow_theme.tres" type="Theme" id=2]
@@ -10,10 +10,35 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+
+[sub_resource type="StyleBoxLine" id=4]
+color = Color( 0.211765, 0.211765, 0.211765, 1 )
+grow_begin = 16.0
+grow_end = 16.0
+vertical = true
+
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+bg_color = Color( 0.168627, 0.168627, 0.168627, 1 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -33,47 +58,47 @@ __meta__ = {
 }
 
 [node name="Panel" type="PanelContainer" parent="HBoxContainer"]
-margin_right = 744.0
+margin_right = 528.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Panel"]
-margin_right = 744.0
+margin_right = 528.0
 margin_bottom = 600.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LeftSide" type="HBoxContainer" parent="HBoxContainer/Panel/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 636.0
-margin_bottom = 580.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 512.0
+margin_bottom = 584.0
 size_flags_horizontal = 2
-custom_constants/separation = 16
+custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PropListContainer" type="VBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]
-margin_right = 280.0
-margin_bottom = 560.0
-rect_min_size = Vector2( 280, 0 )
+margin_right = 232.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 232, 0 )
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
-margin_right = 280.0
+margin_right = 232.0
 margin_bottom = 24.0
-custom_constants/separation = 4
+custom_constants/separation = -1
 
 [node name="AddBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
 margin_right = 95.0
@@ -84,8 +109,8 @@ __meta__ = {
 }
 
 [node name="MoveUpBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 169.0
-margin_right = 196.0
+margin_left = 131.0
+margin_right = 158.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 size_flags_horizontal = 10
@@ -97,8 +122,8 @@ __meta__ = {
 }
 
 [node name="MoveDownBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 200.0
-margin_right = 227.0
+margin_left = 157.0
+margin_right = 184.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 size_flags_horizontal = 0
@@ -109,8 +134,8 @@ __meta__ = {
 }
 
 [node name="DeleteBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 231.0
-margin_right = 280.0
+margin_left = 183.0
+margin_right = 232.0
 margin_bottom = 24.0
 size_flags_horizontal = 0
 disabled = true
@@ -121,64 +146,74 @@ __meta__ = {
 
 [node name="PropertyItemList" type="ItemList" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
 margin_top = 32.0
-margin_right = 280.0
-margin_bottom = 528.0
+margin_right = 232.0
+margin_bottom = 536.0
+grow_vertical = 0
 size_flags_vertical = 3
-items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false ]
+size_flags_stretch_ratio = 10.0
+custom_styles/selected_focus = SubResource( 6 )
+custom_styles/bg_focus = SubResource( 5 )
+custom_styles/selected = SubResource( 6 )
+custom_styles/bg = SubResource( 5 )
+custom_colors/guide_color = Color( 0.301961, 0.301961, 0.301961, 1 )
+custom_constants/vseparation = 6
+items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false, "Item 11", null, false, "Item 12", null, false, "Item 13", null, false, "Item 14", null, false, "Item 15", null, false, "Item 16", null, false, "Item 17", null, false, "Item 18", null, false, "Item 19", null, false, "Item 20", null, false, "Item 21", null, false, "Item 22", null, false, "Item 23", null, false, "Item 24", null, false, "Item 25", null, false, "Item 26", null, false, "Item 27", null, false, "Item 28", null, false, "Item 29", null, false, "Item 30", null, false, "Item 31", null, false, "Item 32", null, false, "Item 33", null, false, "Item 34", null, false ]
 allow_reselect = true
 allow_rmb_select = true
 script = ExtResource( 4 )
 
 [node name="ExportButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
-margin_top = 536.0
-margin_right = 280.0
-margin_bottom = 560.0
+margin_top = 544.0
+margin_right = 232.0
+margin_bottom = 568.0
 text = "Export to JSON"
 
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]
+margin_left = 240.0
+margin_right = 248.0
+margin_bottom = 568.0
+custom_styles/separator = SubResource( 4 )
+
 [node name="PropConfigContainer" type="VBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]
-margin_left = 296.0
-margin_right = 616.0
-margin_bottom = 560.0
-rect_min_size = Vector2( 320, 0 )
-custom_constants/separation = 8
+margin_left = 256.0
+margin_right = 496.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 240, 0 )
+custom_constants/separation = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Control" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer"]
-margin_right = 320.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 0, 22 )
-
 [node name="PropertyConfig" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer" instance=ExtResource( 3 )]
-margin_top = 30.0
-margin_bottom = 560.0
+margin_right = 240.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 240, 0 )
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
 [node name="PreviewPanel" type="PanelContainer" parent="HBoxContainer"]
-margin_left = 744.0
-margin_right = 1024.0
+margin_left = 528.0
+margin_right = 800.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 3 )
 
 [node name="Margin" type="MarginContainer" parent="HBoxContainer/PreviewPanel"]
-margin_right = 280.0
+margin_right = 272.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 240, 0 )
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OutputPanel" parent="HBoxContainer/PreviewPanel/Margin" instance=ExtResource( 5 )]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 260.0
-margin_bottom = 36.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 32.0
 
 [node name="ExportPopup" parent="." instance=ExtResource( 6 )]
 [connection signal="property_list_updated" from="." to="HBoxContainer/PreviewPanel/Margin/OutputPanel" method="_on_Main_property_list_updated"]

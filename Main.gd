@@ -160,6 +160,7 @@ func _on_DeleteButton_pressed() -> void:
 
 func _on_PropertyItemList_nothing_selected() -> void:
 #	-1 means deselect
+	return
 	handle_selection(-1)
 
 
