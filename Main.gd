@@ -20,7 +20,23 @@ var property_list: = []
 var property_dict_base: = {
 	name = "",
 	type = 0,
-	hint = ""
+	meta = {}
+}
+var meta_dict_base: = {
+	boolean = {
+		enabled = false
+	},
+	option = {
+		options = "one, two, three",
+		default = 0
+	},
+	number = {
+		min = 0,
+		max = 10,
+		step = 1,
+		default = 0,
+		use_slider = true
+	}
 }
 
 
@@ -35,7 +51,7 @@ func add_property() -> void:
 	var new_property: = property_dict_base.duplicate()
 	new_property.name = "new property"
 	new_property.type = DataTypes.BOOLEAN
-	new_property.hint = ""
+	new_property.meta  = meta_dict_base.boolean.duplicate()
 
 	property_list.append(new_property)
 
@@ -51,8 +67,6 @@ func update_property(index:int, config_property: String, value) -> void:
 			selected_property.name = value
 		"type":
 			selected_property.type = value
-		"hint":
-			selected_property.hint = value
 
 	emit_signal("property_changed", selected_property)
 	emit_signal("property_list_updated", property_list)
@@ -107,5 +121,8 @@ func _on_PropertyItemList_item_selected(index: int) -> void:
 
 func _on_PropertyConfig_value_changed(config_property, value) -> void:
 	var selected_item: int = prop_item_list.get_selected_items()[0]
+	var selected_property = property_list[selected_item]
 	update_property(selected_item, config_property, value)
 
+	if config_property == "type":
+		prop_config.update_fields(selected_property)
