@@ -74,12 +74,28 @@ func update_property(index:int, config_property: String, value) -> void:
 					selected_property.meta = meta_dict_base.option.duplicate()
 				DataTypes.NUMBER:
 					selected_property.meta = meta_dict_base.number.duplicate()
+
+		# bool configs
 		"bool_enabled":
 			selected_property.meta.enabled = value
+
+		# option configs
 		"option_options":
 			selected_property.meta.options = value
 		"option_default":
 			selected_property.meta.default = value - 1
+
+		# number configs
+		"number_min":
+			selected_property.meta.min = value
+		"number_max":
+			selected_property.meta.max = value
+		"number_step":
+			selected_property.meta.step = value
+		"number_default":
+			selected_property.meta.default = value
+		"number_show_slider":
+			selected_property.meta.use_slider = value
 
 	emit_signal("property_changed", selected_property)
 	emit_signal("property_list_updated", property_list)
