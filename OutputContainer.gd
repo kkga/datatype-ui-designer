@@ -26,14 +26,16 @@ func _create_property_control(property: String, type: int, meta: Dictionary) -> 
 
 	match type:
 		Main.DataTypes.BOOLEAN:
-			control = CheckBox.new()
+			control = CheckBox.new() as CheckBox
+			control.pressed = meta.enabled
 		Main.DataTypes.OPTION:
-			control = OptionButton.new()
-#			var options = hint.split(', ')
-#			for option in options:
-#				control.add_item(option)
+			control = OptionButton.new() as OptionButton
+			var options = meta.options.split(', ')
+			for option in options:
+				control.add_item(option)
+			control.selected = meta.default
 		Main.DataTypes.NUMBER:
-			control = SpinBox.new()
+			control = SpinBox.new() as SpinBox
 
 	label.rect_min_size.x = LABEL_WIDTH
 	label.clip_text = true

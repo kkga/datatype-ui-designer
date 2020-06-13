@@ -67,6 +67,19 @@ func update_property(index:int, config_property: String, value) -> void:
 			selected_property.name = value
 		"type":
 			selected_property.type = value
+			match value:
+				DataTypes.BOOLEAN:
+					selected_property.meta = meta_dict_base.boolean.duplicate()
+				DataTypes.OPTION:
+					selected_property.meta = meta_dict_base.option.duplicate()
+				DataTypes.NUMBER:
+					selected_property.meta = meta_dict_base.number.duplicate()
+		"bool_enabled":
+			selected_property.meta.enabled = value
+		"option_options":
+			selected_property.meta.options = value
+		"option_default":
+			selected_property.meta.default = value - 1
 
 	emit_signal("property_changed", selected_property)
 	emit_signal("property_list_updated", property_list)
@@ -86,6 +99,11 @@ func handle_selection(index) -> void:
 # SIGNAL CALLBACKS =============================================================
 
 
+func _on_property_list_updated(property_list) -> void:
+	output.create_controls(property_list)
+	print(property_list)
+
+
 func _on_property_added(property) -> void:
 	prop_item_list.add_item(property.name)
 	prop_item_list.select(prop_item_list.get_item_count()-1)
@@ -95,10 +113,6 @@ func _on_property_added(property) -> void:
 func _on_property_changed(property) -> void:
 	var selected_item: int = prop_item_list.get_selected_items()[0]
 	prop_item_list.set_item_text(selected_item, property.name)
-
-
-func _on_property_list_updated(property_list) -> void:
-	output.create_controls(property_list)
 
 
 func _on_AddButton_pressed() -> void:

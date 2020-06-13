@@ -106,7 +106,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 80, 0 )
 text = "Active"
 
-[node name="Field" type="CheckBox" parent="MarginContainer/VBoxContainer/Boolean/HBoxContainer"]
+[node name="BoolEnabled" type="CheckBox" parent="MarginContainer/VBoxContainer/Boolean/HBoxContainer"]
 margin_left = 88.0
 margin_right = 304.0
 margin_bottom = 24.0
@@ -145,7 +145,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 80, 0 )
 text = "Options"
 
-[node name="Field" type="LineEdit" parent="MarginContainer/VBoxContainer/Option/HBoxContainer"]
+[node name="OptionOptions" type="LineEdit" parent="MarginContainer/VBoxContainer/Option/HBoxContainer"]
 margin_left = 88.0
 margin_right = 304.0
 margin_bottom = 24.0
@@ -166,7 +166,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 80, 0 )
 text = "Default Option"
 
-[node name="Field" type="SpinBox" parent="MarginContainer/VBoxContainer/Option/HBoxContainer2"]
+[node name="OptionDefault" type="SpinBox" parent="MarginContainer/VBoxContainer/Option/HBoxContainer2"]
 margin_left = 88.0
 margin_right = 304.0
 margin_bottom = 24.0
@@ -294,3 +294,6 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/NameContainer/NameField" to="." method="_on_NameField_text_changed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/TypeContainer/TypeField" to="." method="_on_TypeField_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Boolean/HBoxContainer/BoolEnabled" to="." method="_on_BoolEnabled_toggled"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/Option/HBoxContainer/OptionOptions" to="." method="_on_OptionOptions_text_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Option/HBoxContainer2/OptionDefault" to="." method="_on_OptionDefault_value_changed"]
