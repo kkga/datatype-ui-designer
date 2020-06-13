@@ -4,8 +4,7 @@
 [ext_resource path="res://PropertyConfig.gd" type="Script" id=2]
 [ext_resource path="res://resources/label_medium.tres" type="DynamicFont" id=3]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="PropertyConfig" type="PanelContainer"]
 margin_right = 320.0

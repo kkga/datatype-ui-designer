@@ -7,11 +7,13 @@ signal property_deleted(property)
 
 signal property_list_updated(property_list)
 
-onready var prop_item_list: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/PropertyItemList
-onready var add_button: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/HBoxContainer/AddButton
+onready var export_popup: = $ExportPopup
+
+onready var prop_item_list: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList
+onready var add_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddButton
 onready var delete_button: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton
-onready var prop_config: = $MarginContainer/HBoxContainer/LeftSide/PropConfigContainer/PropertyConfig
-onready var output: = $MarginContainer/HBoxContainer/RightSide/PanelContainer/OutputContainer
+onready var prop_config: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
+onready var output: = $HBoxContainer/Panel2/RightSide/PanelContainer/OutputContainer
 
 enum DataTypes { BOOLEAN, OPTION, NUMBER }
 
@@ -156,3 +158,8 @@ func _on_PropertyConfig_value_changed(config_property, value) -> void:
 
 	if config_property == "type":
 		prop_config.update_fields(selected_property)
+
+
+func _on_ExportButton_pressed() -> void:
+	export_popup.update_export(property_list)
+	export_popup.popup_centered_ratio()

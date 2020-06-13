@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "JSONBeautifier",
+"language": "GDScript",
+"path": "res://addons/json_beautifier/json_beautifier.gd"
+}, {
 "base": "Control",
 "class": "Main",
 "language": "GDScript",
 "path": "res://Main.gd"
 } ]
 _global_script_class_icons={
+"JSONBeautifier": "",
 "Main": ""
 }
 

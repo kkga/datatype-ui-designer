@@ -87,7 +87,6 @@ func _on_NumberMax_value_changed(value: float) -> void:
 func _on_NumberStep_value_changed(value: float) -> void:
 	emit_signal("value_changed", "number_step", value)
 
-
 func _on_NumberDefault_value_changed(value: float) -> void:
 	emit_signal("value_changed", "number_default", value)
 
