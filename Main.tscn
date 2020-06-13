@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://webflow_theme.tres" type="Theme" id=2]
 [ext_resource path="res://PropertyConfig.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PropertyItemList.gd" type="Script" id=4]
-[ext_resource path="res://OutputContainer.gd" type="Script" id=5]
+[ext_resource path="res://Output/OutputPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ExportPopup/ExportPopup.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=4]
@@ -15,23 +15,14 @@ bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.168627, 0.168627, 0.168627, 1 )
-
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -139,13 +130,13 @@ margin_bottom = 560.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 5 )
 
-[node name="Panel2" type="PanelContainer" parent="HBoxContainer"]
+[node name="PreviewPanel" type="PanelContainer" parent="HBoxContainer"]
 margin_left = 744.0
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="RightSide" type="MarginContainer" parent="HBoxContainer/Panel2"]
+[node name="Margin" type="MarginContainer" parent="HBoxContainer/PreviewPanel"]
 margin_right = 280.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 240, 0 )
@@ -157,31 +148,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/Panel2/RightSide"]
+[node name="OutputPanel" parent="HBoxContainer/PreviewPanel/Margin" instance=ExtResource( 5 )]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 260.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 240, 0 )
-size_flags_vertical = 0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OutputContainer" type="VBoxContainer" parent="HBoxContainer/Panel2/RightSide/PanelContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 232.0
-margin_bottom = 8.0
-rect_min_size = Vector2( 224, 0 )
-custom_constants/separation = 8
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExportPopup" parent="." instance=ExtResource( 6 )]
+[connection signal="property_list_updated" from="." to="HBoxContainer/PreviewPanel/Margin/OutputPanel" method="_on_Main_property_list_updated"]
 [connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList" to="." method="_on_PropertyItemList_item_selected"]

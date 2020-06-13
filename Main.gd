@@ -11,9 +11,8 @@ onready var export_popup: = $ExportPopup
 
 onready var prop_item_list: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList
 onready var add_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddButton
-onready var delete_button: = $MarginContainer/HBoxContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton
+onready var delete_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton
 onready var prop_config: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
-onready var output: = $HBoxContainer/Panel2/RightSide/PanelContainer/OutputContainer
 
 enum DataTypes { BOOLEAN, OPTION, NUMBER }
 
@@ -22,7 +21,10 @@ var property_list: = []
 var property_dict_base: = {
 	name = "",
 	type = 0,
-	meta = {}
+	meta = {},
+	condition = {
+		"Condition": true
+	}
 }
 var meta_dict_base: = {
 	boolean = {
@@ -58,6 +60,14 @@ func add_property() -> void:
 	property_list.append(new_property)
 
 	emit_signal("property_added", new_property)
+	emit_signal("property_list_updated", property_list)
+
+
+func delete_property() -> void:
+	var selected_item: int = prop_item_list.get_selected_items()[0]
+	var selected_property = property_list[selected_item]
+	property_list.erase(selected_property)
+	emit_signal("property_deleted", selected_property)
 	emit_signal("property_list_updated", property_list)
 
 
@@ -106,19 +116,20 @@ func update_property(index:int, config_property: String, value) -> void:
 func handle_selection(index) -> void:
 	if index == -1:
 		prop_config.hide()
+		delete_button.disabled = true
 		return
 
 	var selected_property = property_list[index]
 
 	prop_config.show()
 	prop_config.update_fields(selected_property)
+	delete_button.disabled = false
 
 
 # SIGNAL CALLBACKS =============================================================
 
 
 func _on_property_list_updated(property_list) -> void:
-	output.create_controls(property_list)
 	print(property_list)
 
 
@@ -133,13 +144,18 @@ func _on_property_changed(property) -> void:
 	prop_item_list.set_item_text(selected_item, property.name)
 
 
+func _on_property_deleted(property) -> void:
+	var selected_item: int = prop_item_list.get_selected_items()[0]
+	prop_item_list.remove_item(selected_item)
+	handle_selection(-1)
+
+
 func _on_AddButton_pressed() -> void:
 	add_property()
 
 
 func _on_DeleteButton_pressed() -> void:
-#	property_list.erase(_selected_property)
-	prop_item_list.unselect_all()
+	delete_property()
 
 
 func _on_PropertyItemList_nothing_selected() -> void:
