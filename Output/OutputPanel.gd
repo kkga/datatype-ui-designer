@@ -5,6 +5,8 @@ const CONTROL_WIDTH = 172
 
 onready var vbox: = $VBoxContainer
 
+var state: = {}
+
 
 func create_controls(property_list: Array) -> void:
 	_clear()
@@ -65,6 +67,7 @@ func _create_property_control(
 
 
 # SIGNAL CALLBACKS =============================================================
+
 
 func _on_Main_property_list_updated(property_list) -> void:
 	create_controls(property_list)

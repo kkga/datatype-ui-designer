@@ -10,8 +10,8 @@ signal property_list_updated(property_list)
 onready var export_popup: = $ExportPopup
 
 onready var prop_item_list: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList
-onready var add_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddButton
-onready var delete_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton
+onready var add_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddBtn
+onready var delete_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteBtn
 onready var prop_config: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
 
 enum DataTypes { BOOLEAN, OPTION, NUMBER }

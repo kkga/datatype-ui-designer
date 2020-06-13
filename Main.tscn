@@ -2,15 +2,15 @@
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://webflow_theme.tres" type="Theme" id=2]
-[ext_resource path="res://PropertyConfig.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PropertyConfig/PropertyConfig.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PropertyItemList.gd" type="Script" id=4]
 [ext_resource path="res://Output/OutputPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ExportPopup/ExportPopup.tscn" type="PackedScene" id=6]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
@@ -37,7 +37,7 @@ margin_right = 744.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Panel"]
 margin_right = 744.0
@@ -73,9 +73,9 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
 margin_right = 280.0
 margin_bottom = 24.0
-custom_constants/separation = 8
+custom_constants/separation = 4
 
-[node name="AddButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
+[node name="AddBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
 margin_right = 95.0
 margin_bottom = 24.0
 text = "+ Add Property"
@@ -83,13 +83,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DeleteButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 183.0
-margin_right = 280.0
+[node name="MoveUpBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
+margin_left = 169.0
+margin_right = 196.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
 size_flags_horizontal = 10
 disabled = true
-text = "Delete Property"
+text = "↑"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveDownBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
+margin_left = 200.0
+margin_right = 227.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_horizontal = 0
+disabled = true
+text = "↓"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
+margin_left = 231.0
+margin_right = 280.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+disabled = true
+text = "Delete"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -101,6 +126,7 @@ margin_bottom = 528.0
 size_flags_vertical = 3
 items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false ]
 allow_reselect = true
+allow_rmb_select = true
 script = ExtResource( 4 )
 
 [node name="ExportButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
@@ -128,7 +154,7 @@ rect_min_size = Vector2( 0, 22 )
 margin_top = 30.0
 margin_bottom = 560.0
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="PreviewPanel" type="PanelContainer" parent="HBoxContainer"]
 margin_left = 744.0
@@ -156,8 +182,10 @@ margin_bottom = 36.0
 
 [node name="ExportPopup" parent="." instance=ExtResource( 6 )]
 [connection signal="property_list_updated" from="." to="HBoxContainer/PreviewPanel/Margin/OutputPanel" method="_on_Main_property_list_updated"]
-[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddBtn" to="." method="_on_AddButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveUpBtn" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveDownBtn" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteBtn" to="." method="_on_DeleteButton_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList" to="." method="_on_PropertyItemList_item_selected"]
 [connection signal="nothing_selected" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList" to="." method="_on_PropertyItemList_nothing_selected"]
 [connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/ExportButton" to="." method="_on_ExportButton_pressed"]

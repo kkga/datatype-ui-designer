@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://webflow_theme.tres" type="Theme" id=1]
-[ext_resource path="res://PropertyConfig.gd" type="Script" id=2]
+[ext_resource path="res://PropertyConfig/PropertyConfig.gd" type="Script" id=1]
+[ext_resource path="res://webflow_theme.tres" type="Theme" id=2]
 [ext_resource path="res://resources/label_medium.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -10,30 +10,24 @@
 margin_right = 320.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 320, 0 )
-theme = ExtResource( 1 )
+theme = ExtResource( 2 )
 custom_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 320.0
-margin_bottom = 496.0
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
+margin_bottom = 426.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 312.0
-margin_bottom = 488.0
+margin_right = 320.0
+margin_bottom = 426.0
 custom_constants/separation = 8
 
 [node name="NameContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
@@ -47,13 +41,13 @@ text = "Name"
 
 [node name="NameField" type="LineEdit" parent="MarginContainer/VBoxContainer/NameContainer"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="TypeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 32.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 56.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
@@ -67,7 +61,7 @@ text = "Type"
 
 [node name="TypeField" type="OptionButton" parent="MarginContainer/VBoxContainer/TypeContainer"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Boolean"
@@ -76,25 +70,25 @@ selected = 0
 
 [node name="Boolean" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 64.0
-margin_right = 304.0
-margin_bottom = 122.0
+margin_right = 320.0
+margin_bottom = 126.0
 custom_constants/separation = 8
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Boolean"]
-margin_right = 304.0
-margin_bottom = 4.0
+margin_right = 320.0
+margin_bottom = 8.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Boolean"]
-margin_top = 12.0
-margin_right = 304.0
-margin_bottom = 26.0
+margin_top = 16.0
+margin_right = 320.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 3 )
 text = "Boolean Settings"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Boolean"]
-margin_top = 34.0
-margin_right = 304.0
-margin_bottom = 58.0
+margin_top = 38.0
+margin_right = 320.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -107,33 +101,33 @@ text = "Active"
 
 [node name="BoolEnabled" type="CheckBox" parent="MarginContainer/VBoxContainer/Boolean/HBoxContainer"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "On"
 flat = true
 
 [node name="Option" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 130.0
-margin_right = 304.0
-margin_bottom = 220.0
+margin_top = 134.0
+margin_right = 320.0
+margin_bottom = 228.0
 custom_constants/separation = 8
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Option"]
-margin_right = 304.0
-margin_bottom = 4.0
+margin_right = 320.0
+margin_bottom = 8.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Option"]
-margin_top = 12.0
-margin_right = 304.0
-margin_bottom = 26.0
+margin_top = 16.0
+margin_right = 320.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 3 )
 text = "Option Settings"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Option"]
-margin_top = 34.0
-margin_right = 304.0
-margin_bottom = 58.0
+margin_top = 38.0
+margin_right = 320.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -146,15 +140,15 @@ text = "Options"
 
 [node name="OptionOptions" type="LineEdit" parent="MarginContainer/VBoxContainer/Option/HBoxContainer"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 placeholder_text = "one, two, three"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Option"]
-margin_top = 66.0
-margin_right = 304.0
-margin_bottom = 90.0
+margin_top = 70.0
+margin_right = 320.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -167,33 +161,33 @@ text = "Default Option"
 
 [node name="OptionDefault" type="SpinBox" parent="MarginContainer/VBoxContainer/Option/HBoxContainer2"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 min_value = 1.0
 value = 1.0
 
 [node name="Number" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 228.0
-margin_right = 304.0
-margin_bottom = 414.0
+margin_top = 236.0
+margin_right = 320.0
+margin_bottom = 426.0
 custom_constants/separation = 8
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Number"]
-margin_right = 304.0
-margin_bottom = 4.0
+margin_right = 320.0
+margin_bottom = 8.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Number"]
-margin_top = 12.0
-margin_right = 304.0
-margin_bottom = 26.0
+margin_top = 16.0
+margin_right = 320.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 3 )
 text = "Number Settings"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
-margin_top = 34.0
-margin_right = 304.0
-margin_bottom = 58.0
+margin_top = 38.0
+margin_right = 320.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -206,14 +200,14 @@ text = "Min"
 
 [node name="NumberMin" type="SpinBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
-margin_top = 66.0
-margin_right = 304.0
-margin_bottom = 90.0
+margin_top = 70.0
+margin_right = 320.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -226,14 +220,14 @@ text = "Max"
 
 [node name="NumberMax" type="SpinBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer2"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
-margin_top = 98.0
-margin_right = 304.0
-margin_bottom = 122.0
+margin_top = 102.0
+margin_right = 320.0
+margin_bottom = 126.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -246,14 +240,14 @@ text = "Step"
 
 [node name="NumberStep" type="SpinBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer4"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
-margin_top = 130.0
-margin_right = 304.0
-margin_bottom = 154.0
+margin_top = 134.0
+margin_right = 320.0
+margin_bottom = 158.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -266,14 +260,14 @@ text = "Default Value"
 
 [node name="NumberDefault" type="SpinBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer5"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
-margin_top = 162.0
-margin_right = 304.0
-margin_bottom = 186.0
+margin_top = 166.0
+margin_right = 320.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -286,33 +280,34 @@ text = "Show Slider"
 
 [node name="NumberShowSlider" type="CheckBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer3"]
 margin_left = 88.0
-margin_right = 304.0
+margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "On"
 flat = true
 
 [node name="Condition" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 422.0
+visible = false
+margin_top = 434.0
 margin_right = 304.0
-margin_bottom = 480.0
+margin_bottom = 496.0
 custom_constants/separation = 8
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Condition"]
 margin_right = 304.0
-margin_bottom = 4.0
+margin_bottom = 8.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Condition"]
-margin_top = 12.0
+margin_top = 16.0
 margin_right = 304.0
-margin_bottom = 26.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 3 )
 text = "Visibility Conditions"
 
 [node name="AddConditionButton" type="Button" parent="MarginContainer/VBoxContainer/Condition"]
-margin_top = 34.0
+margin_top = 38.0
 margin_right = 304.0
-margin_bottom = 58.0
+margin_bottom = 62.0
 text = "+ Add Condition"
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/NameContainer/NameField" to="." method="_on_NameField_text_changed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/TypeContainer/TypeField" to="." method="_on_TypeField_item_selected"]
