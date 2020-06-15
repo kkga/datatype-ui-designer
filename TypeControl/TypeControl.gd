@@ -11,6 +11,9 @@ onready var control := $Control
 
 var meta: Dictionary = {}
 
+var property_name: String
+var property_value setget , get_property_value
+
 
 func _ready() -> void:
 	_change_control(type)
@@ -18,6 +21,7 @@ func _ready() -> void:
 
 func update_control(property: Dictionary) -> void:
 	label.text = property.name
+	property_name = property.name
 
 	if not type == property.type:
 		self.type = property.type
@@ -73,3 +77,17 @@ func _change_control(control_type: int) -> void:
 func set_type(value: int) -> void:
 	type = value
 	_change_control(type)
+
+
+func get_property_value():
+	var value
+
+	match type:
+		Main.DataTypes.BOOLEAN:
+			value = control.pressed
+		Main.DataTypes.NUMBER:
+			value = control.value
+		Main.DataTypes.OPTION:
+			value = control.selected
+
+	return value

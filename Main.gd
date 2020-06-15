@@ -45,6 +45,7 @@ func add_property() -> void:
 	new_property.name = "Property"
 	new_property.type = DataTypes.OPTION
 	new_property.meta = meta_dict_base.option.duplicate()
+	new_property.conditions = []
 
 	property_list.append(new_property)
 
@@ -104,11 +105,26 @@ func update_property(index: int, config_property: String, value) -> void:
 	emit_signal("property_list_updated", property_list)
 
 
+func update_condition(
+		property_index: int,
+		condition_index: int,
+		condition: Dictionary) -> void:
+	property_list[property_index].conditions[condition_index] = condition
+	emit_signal("property_list_updated", property_list)
+
+
+func add_condition(property_index: int, condition: Dictionary) -> void:
+	property_list[property_index].conditions.append(condition)
+	emit_signal("property_list_updated", property_list)
+
+
 func handle_selection(index) -> void:
 	var selected_property = property_list[index]
+	print(selected_property.conditions)
 
 	prop_config.show()
 	prop_config.update_fields(selected_property)
+	prop_config.update_rules(selected_property.conditions)
 	delete_button.disabled = false
 
 
@@ -116,6 +132,7 @@ func handle_selection(index) -> void:
 
 
 func _on_property_list_updated(_property_list) -> void:
+	return
 	print(_property_list)
 
 
@@ -168,6 +185,17 @@ func _on_PropertyConfig_value_changed(config_property, value) -> void:
 
 	if config_property == "type":
 		prop_config.update_fields(selected_property)
+
+
+func _on_PropertyConfig_rule_changed(condition_index: int, condition: Dictionary) -> void:
+	var selected_item: int = prop_item_list.get_selected_items()[0]
+	var selected_property = property_list[selected_item]
+	update_condition(selected_item, condition_index, condition)
+
+
+func _on_PropertyConfig_rule_added(condition) -> void:
+	var selected_item: int = prop_item_list.get_selected_items()[0]
+	add_condition(selected_item, condition)
 
 
 func _on_ExportButton_pressed() -> void:

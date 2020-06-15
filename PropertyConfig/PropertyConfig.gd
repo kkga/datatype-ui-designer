@@ -1,6 +1,17 @@
 extends PanelContainer
 
 signal value_changed(property, value)
+signal rule_changed(index, condition)
+signal rule_added(condition)
+signal rule_deleted(index)
+
+const DEFAULT_CONDITION := {
+	property = "Display",
+	comparison = "Is",
+	value = "Grid"
+}
+
+export (PackedScene) var RuleContainerScene
 
 onready var name_field := $MarginContainer/VBoxContainer/NameContainer/NameField
 onready var type_field := $MarginContainer/VBoxContainer/TypeContainer/TypeField
@@ -8,6 +19,7 @@ onready var type_field := $MarginContainer/VBoxContainer/TypeContainer/TypeField
 onready var boolean_settings := $MarginContainer/VBoxContainer/Boolean
 onready var option_settings := $MarginContainer/VBoxContainer/Option
 onready var number_settings := $MarginContainer/VBoxContainer/Number
+onready var rules_container := $MarginContainer/VBoxContainer/Rules/RulesContainer
 
 # bool controls
 onready var bool_enabled_btn := $MarginContainer/VBoxContainer/Boolean/HBoxContainer/BoolEnabled
@@ -49,6 +61,29 @@ func update_fields(property: Dictionary) -> void:
 			number_default_field.value = property.meta.default
 			number_suffix_field.text = property.meta.suffix
 			number_slider_btn.pressed = property.meta.use_slider
+
+
+func update_rules(conditions: Array) -> void:
+	for rule in rules_container.get_children():
+		rule.queue_free()
+	yield(get_tree(), "idle_frame")
+	for i in range(0, conditions.size()):
+		if rules_container.get_child_count() >= i+1:
+			rules_container.get_child(i).setup(conditions[i])
+		else:
+			create_rule(conditions[i])
+
+
+func create_rule(condition: Dictionary):
+	var rule = RuleContainerScene.instance()
+	rules_container.add_child(rule)
+	rule.setup(condition)
+	rule.connect("condition_changed", self, "_on_Rule_condition_changed", [rule])
+
+
+func add_rule():
+	create_rule(DEFAULT_CONDITION)
+	emit_signal("rule_added", DEFAULT_CONDITION)
 
 
 # SIGNAL CALLBACKS =============================================================
@@ -107,3 +142,12 @@ func _on_NumberShowSlider_toggled(button_pressed: bool) -> void:
 
 func _on_NumberSuffix_text_changed(new_text: String) -> void:
 	emit_signal("value_changed", "number_suffix", new_text)
+
+
+func _on_AddRuleButton_pressed() -> void:
+	add_rule()
+
+
+func _on_Rule_condition_changed(condition: Dictionary, rule_node) -> void:
+	print(condition)
+	emit_signal("rule_changed", rule_node.get_index(), condition)
