@@ -97,8 +97,8 @@ margin_left = 88.0
 margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+pressed = true
 text = "On"
-flat = true
 
 [node name="Option" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 112.0
@@ -264,6 +264,7 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "On"
 flat = true
+expand_icon = true
 
 [node name="Condition" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 visible = false

@@ -218,10 +218,18 @@ margin_right = 256.0
 margin_bottom = 216.0
 
 [node name="ExportPopup" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -318.0
+margin_top = -229.0
+margin_right = 318.0
+margin_bottom = 229.0
 [connection signal="property_list_updated" from="." to="HBoxContainer/PreviewPanel/Margin/OutputPanel" method="_on_Main_property_list_updated"]
 [connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddBtn" to="." method="_on_AddButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveUpBtn" to="." method="_on_DeleteButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveDownBtn" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveUpBtn" to="." method="_on_MoveUpBtn_pressed"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveDownBtn" to="." method="_on_MoveDownBtn_pressed"]
 [connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteBtn" to="." method="_on_DeleteButton_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList" to="." method="_on_PropertyItemList_item_selected"]
 [connection signal="nothing_selected" from="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList" to="." method="_on_PropertyItemList_nothing_selected"]

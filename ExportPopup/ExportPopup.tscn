@@ -1,27 +1,58 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/text_mono.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ExportPopup/ExportPopup.gd" type="Script" id=2]
+[ext_resource path="res://webflow_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/label_medium.tres" type="DynamicFont" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+expand_margin_top = 24.0
+shadow_color = Color( 0, 0, 0, 0.15 )
+shadow_size = 16
+shadow_offset = Vector2( 0, 4 )
 
 [node name="ExportPopup" type="WindowDialog"]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 608.0
+margin_bottom = 377.0
+theme = ExtResource( 3 )
+custom_styles/panel = SubResource( 1 )
+custom_fonts/title_font = ExtResource( 4 )
+custom_constants/title_height = 24
 window_title = "Export to JSON"
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 0
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer"]
+margin_left = 4.0
+margin_right = 604.0
+margin_bottom = 373.0
 custom_fonts/font = ExtResource( 1 )
 custom_constants/line_spacing = 0
 text = "[{\"meta\":{\"enabled\":false},\"name\":\"new property\",\"type\":0},{\"meta\":{\"enabled\":false},\"name\":\"new property\",\"type\":0},{\"meta\":{\"enabled\":false},\"name\":\"new property\",\"type\":0},{\"meta\":{\"enabled\":false},\"name\":\"new property\",\"type\":0},{\"meta\":{\"enabled\":false},\"name\":\"new property\",\"type\":0}]"
 readonly = true
-highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
 smooth_scrolling = true
 wrap_enabled = true
-minimap_draw = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

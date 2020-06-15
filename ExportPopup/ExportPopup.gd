@@ -1,6 +1,6 @@
 extends WindowDialog
 
-onready var text_edit: = $TextEdit
+onready var text_edit: = $MarginContainer/TextEdit
 
 
 func update_export(property_list) -> void:

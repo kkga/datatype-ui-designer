@@ -12,13 +12,15 @@ onready var export_popup := $ExportPopup
 onready var prop_item_list := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList
 onready var add_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddBtn
 onready var delete_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteBtn
+onready var move_up_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveUpBtn
+onready var move_down_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveDownBtn
 onready var prop_config := $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
 
 enum DataTypes { BOOLEAN, OPTION, NUMBER }
 
 var property_list := []
 
-var property_dict_base := {name = "", type = 1, meta = {}, condition = {"Condition": true}}
+var property_dict_base := { name = "", type = 1, meta = {}, conditions = []}
 
 var meta_dict_base := {
 	boolean = {enabled = false},
@@ -28,15 +30,19 @@ var meta_dict_base := {
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	connect("property_added", self, "_on_property_added")
+# warning-ignore:return_value_discarded
 	connect("property_deleted", self, "_on_property_deleted")
+# warning-ignore:return_value_discarded
 	connect("property_changed", self, "_on_property_changed")
+# warning-ignore:return_value_discarded
 	connect("property_list_updated", self, "_on_property_list_updated")
 
 
 func add_property() -> void:
 	var new_property := property_dict_base.duplicate()
-	new_property.name = "new property"
+	new_property.name = "Property"
 	new_property.type = DataTypes.OPTION
 	new_property.meta = meta_dict_base.option.duplicate()
 
@@ -97,11 +103,6 @@ func update_property(index: int, config_property: String, value) -> void:
 
 
 func handle_selection(index) -> void:
-	if index == -1:
-		prop_config.hide()
-		delete_button.disabled = true
-		return
-
 	var selected_property = property_list[index]
 
 	prop_config.show()
@@ -112,8 +113,8 @@ func handle_selection(index) -> void:
 # SIGNAL CALLBACKS =============================================================
 
 
-func _on_property_list_updated(property_list) -> void:
-	print(property_list)
+func _on_property_list_updated(_property_list) -> void:
+	print(_property_list)
 
 
 func _on_property_added(property) -> void:
@@ -127,7 +128,7 @@ func _on_property_changed(property) -> void:
 	prop_item_list.set_item_text(selected_item, property.name)
 
 
-func _on_property_deleted(property) -> void:
+func _on_property_deleted(_property) -> void:
 	var selected_item: int = prop_item_list.get_selected_items()[0]
 	prop_item_list.remove_item(selected_item)
 	handle_selection(-1)
@@ -141,10 +142,17 @@ func _on_DeleteButton_pressed() -> void:
 	delete_property()
 
 
+func _on_MoveUpBtn_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_MoveDownBtn_pressed() -> void:
+	pass # Replace with function body.
+
+
 func _on_PropertyItemList_nothing_selected() -> void:
-#	-1 means deselect
 	return
-	handle_selection(-1)
+#	handle_selection(-1)
 
 
 func _on_PropertyItemList_item_selected(index: int) -> void:

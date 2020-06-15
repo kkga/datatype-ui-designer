@@ -17,6 +17,8 @@ func _ready() -> void:
 
 
 func update_control(property: Dictionary) -> void:
+	label.text = property.name
+
 	if not type == property.type:
 		self.type = property.type
 
