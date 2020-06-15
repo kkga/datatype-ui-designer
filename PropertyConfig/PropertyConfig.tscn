@@ -19,11 +19,11 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 320.0
-margin_bottom = 360.0
+margin_bottom = 392.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 320.0
-margin_bottom = 360.0
+margin_bottom = 392.0
 custom_constants/separation = 8
 
 [node name="NameContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -156,7 +156,7 @@ value = 1.0
 [node name="Number" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 192.0
 margin_right = 320.0
-margin_bottom = 360.0
+margin_bottom = 392.0
 custom_constants/separation = 8
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Number"]
@@ -178,10 +178,14 @@ rect_min_size = Vector2( 80, 0 )
 text = "Min"
 
 [node name="NumberMin" type="SpinBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer"]
+anchor_top = 0.0165176
+anchor_bottom = 0.0165176
 margin_left = 88.0
 margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+min_value = -9999.0
+max_value = 9999.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
 margin_top = 48.0
@@ -202,6 +206,8 @@ margin_left = 88.0
 margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+min_value = -9999.0
+max_value = 9999.0
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
 margin_top = 80.0
@@ -218,10 +224,14 @@ rect_min_size = Vector2( 80, 0 )
 text = "Step"
 
 [node name="NumberStep" type="SpinBox" parent="MarginContainer/VBoxContainer/Number/HBoxContainer4"]
+anchor_top = 0.0165176
+anchor_bottom = 0.0165176
 margin_left = 88.0
 margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+min_value = -9999.0
+max_value = 9999.0
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
 margin_top = 112.0
@@ -242,11 +252,33 @@ margin_left = 88.0
 margin_right = 320.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+min_value = -9999.0
+max_value = 9999.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
 margin_top = 144.0
 margin_right = 320.0
 margin_bottom = 168.0
+rect_min_size = Vector2( 0, 24 )
+custom_constants/separation = 8
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Number/HBoxContainer6"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+text = "Suffix"
+
+[node name="NumberSuffix" type="LineEdit" parent="MarginContainer/VBoxContainer/Number/HBoxContainer6"]
+margin_left = 88.0
+margin_right = 320.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Number"]
+margin_top = 176.0
+margin_right = 320.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 0, 24 )
 custom_constants/separation = 8
 
@@ -298,4 +330,5 @@ text = "+ Add Condition"
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Number/HBoxContainer2/NumberMax" to="." method="_on_NumberMax_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Number/HBoxContainer4/NumberStep" to="." method="_on_NumberStep_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Number/HBoxContainer5/NumberDefault" to="." method="_on_NumberDefault_value_changed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/Number/HBoxContainer6/NumberSuffix" to="." method="_on_NumberSuffix_text_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Number/HBoxContainer3/NumberShowSlider" to="." method="_on_NumberShowSlider_toggled"]

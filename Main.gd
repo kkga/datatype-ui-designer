@@ -25,7 +25,7 @@ var property_dict_base := { name = "", type = 1, meta = {}, conditions = []}
 var meta_dict_base := {
 	boolean = {enabled = false},
 	option = {options = "one, two, three", default = 0},
-	number = {min = 0, max = 1000, step = 1, default = 0, use_slider = false}
+	number = {min = 0, max = 1000, step = 1, default = 0, suffix = "", use_slider = false}
 }
 
 
@@ -95,6 +95,8 @@ func update_property(index: int, config_property: String, value) -> void:
 			selected_property.meta.step = value
 		"number_default":
 			selected_property.meta.default = value
+		"number_suffix":
+			selected_property.meta.suffix = value
 		"number_show_slider":
 			selected_property.meta.use_slider = value
 

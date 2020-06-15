@@ -44,6 +44,7 @@ func update_control(property: Dictionary) -> void:
 			spinbox.min_value = meta.min
 			spinbox.max_value = meta.max
 			spinbox.step = meta.step
+			spinbox.suffix = meta.suffix
 #			TODO: add slider functionality
 
 

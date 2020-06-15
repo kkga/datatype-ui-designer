@@ -21,6 +21,7 @@ onready var number_min_field := $MarginContainer/VBoxContainer/Number/HBoxContai
 onready var number_max_field := $MarginContainer/VBoxContainer/Number/HBoxContainer2/NumberMax
 onready var number_step_field := $MarginContainer/VBoxContainer/Number/HBoxContainer4/NumberStep
 onready var number_default_field := $MarginContainer/VBoxContainer/Number/HBoxContainer5/NumberDefault
+onready var number_suffix_field := $MarginContainer/VBoxContainer/Number/HBoxContainer6/NumberSuffix
 onready var number_slider_btn := $MarginContainer/VBoxContainer/Number/HBoxContainer3/NumberShowSlider
 
 
@@ -46,6 +47,7 @@ func update_fields(property: Dictionary) -> void:
 			number_max_field.value = property.meta.max
 			number_step_field.value = property.meta.step
 			number_default_field.value = property.meta.default
+			number_suffix_field.text = property.meta.suffix
 			number_slider_btn.pressed = property.meta.use_slider
 
 
@@ -101,3 +103,7 @@ func _on_NumberDefault_value_changed(value: float) -> void:
 
 func _on_NumberShowSlider_toggled(button_pressed: bool) -> void:
 	emit_signal("value_changed", "number_show_slider", button_pressed)
+
+
+func _on_NumberSuffix_text_changed(new_text: String) -> void:
+	emit_signal("value_changed", "number_suffix", new_text)
