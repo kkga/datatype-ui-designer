@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Main",
 "language": "GDScript",
 "path": "res://Main.gd"
+}, {
+"base": "HBoxContainer",
+"class": "TypeControl",
+"language": "GDScript",
+"path": "res://TypeControl/TypeControl.gd"
 } ]
 _global_script_class_icons={
 "JSONBeautifier": "",
-"Main": ""
+"Main": "",
+"TypeControl": ""
 }
 
 [application]

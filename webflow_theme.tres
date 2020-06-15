@@ -11,24 +11,26 @@
 [ext_resource path="res://styles/stylebox_menu_panel.tres" type="StyleBox" id=9]
 [ext_resource path="res://styles/stylebox_menu_hover.tres" type="StyleBox" id=10]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=1]
 
-[sub_resource type="StyleBoxLine" id=5]
+[sub_resource type="StyleBoxLine" id=2]
 color = Color( 0.211765, 0.211765, 0.211765, 1 )
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id=3]
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 8.0
 content_margin_right = 8.0
 bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 8.0
 content_margin_right = 8.0
 bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=6]
+
+[sub_resource type="StreamTexture" id=7]
 
 [sub_resource type="StreamTexture" id=8]
 
@@ -38,9 +40,7 @@ bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 
 [sub_resource type="StreamTexture" id=11]
 
-[sub_resource type="StreamTexture" id=12]
-
-[sub_resource type="StyleBoxLine" id=13]
+[sub_resource type="StyleBoxLine" id=12]
 color = Color( 0.168627, 0.168627, 0.168627, 1 )
 vertical = true
 
@@ -73,10 +73,10 @@ CheckBox/styles/disabled = null
 CheckBox/styles/focus = null
 CheckBox/styles/hover = null
 CheckBox/styles/hover_pressed = null
-CheckBox/styles/normal = SubResource( 6 )
+CheckBox/styles/normal = SubResource( 1 )
 CheckBox/styles/pressed = null
 HSeparator/constants/separation = 8
-HSeparator/styles/separator = SubResource( 5 )
+HSeparator/styles/separator = SubResource( 2 )
 ItemList/colors/font_color = Color( 0.63, 0.63, 0.63, 1 )
 ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
 ItemList/colors/guide_color = Color( 0.301961, 0.301961, 0.301961, 0 )
@@ -87,10 +87,10 @@ ItemList/constants/vseparation = 8
 ItemList/fonts/font = null
 ItemList/styles/bg = ExtResource( 7 )
 ItemList/styles/bg_focus = ExtResource( 7 )
-ItemList/styles/cursor = SubResource( 16 )
+ItemList/styles/cursor = SubResource( 3 )
 ItemList/styles/cursor_unfocused = null
-ItemList/styles/selected = SubResource( 14 )
-ItemList/styles/selected_focus = SubResource( 15 )
+ItemList/styles/selected = SubResource( 4 )
+ItemList/styles/selected_focus = SubResource( 5 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
@@ -113,7 +113,7 @@ MenuButton/fonts/font = null
 MenuButton/styles/disabled = null
 MenuButton/styles/focus = null
 MenuButton/styles/hover = null
-MenuButton/styles/normal = SubResource( 7 )
+MenuButton/styles/normal = SubResource( 6 )
 MenuButton/styles/pressed = null
 OptionButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 OptionButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
@@ -127,19 +127,19 @@ OptionButton/styles/disabled = null
 OptionButton/styles/focus = null
 OptionButton/styles/hover = null
 OptionButton/styles/normal = null
-OptionButton/styles/pressed = null
+OptionButton/styles/pressed = ExtResource( 8 )
 PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
 PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
 PopupMenu/constants/hseparation = 4
-PopupMenu/constants/vseparation = 4
+PopupMenu/constants/vseparation = 8
 PopupMenu/fonts/font = null
-PopupMenu/icons/checked = SubResource( 8 )
-PopupMenu/icons/radio_checked = SubResource( 9 )
-PopupMenu/icons/radio_unchecked = SubResource( 10 )
-PopupMenu/icons/submenu = SubResource( 11 )
-PopupMenu/icons/unchecked = SubResource( 12 )
+PopupMenu/icons/checked = SubResource( 7 )
+PopupMenu/icons/radio_checked = SubResource( 8 )
+PopupMenu/icons/radio_unchecked = SubResource( 9 )
+PopupMenu/icons/submenu = SubResource( 10 )
+PopupMenu/icons/unchecked = SubResource( 11 )
 PopupMenu/styles/hover = ExtResource( 10 )
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
@@ -148,4 +148,4 @@ PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
 SpinBox/icons/updown = null
 VSeparator/constants/separation = 8
-VSeparator/styles/separator = SubResource( 13 )
+VSeparator/styles/separator = SubResource( 12 )

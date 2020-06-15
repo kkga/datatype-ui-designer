@@ -10,14 +10,14 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 expand_margin_left = 7.0
 expand_margin_right = 7.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=3]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 5.0
@@ -35,9 +35,9 @@ grow_begin = 16.0
 grow_end = 16.0
 vertical = true
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.168627, 0.168627, 0.168627, 1 )
 
 [node name="Main" type="Control"]
@@ -151,10 +151,10 @@ margin_bottom = 536.0
 grow_vertical = 0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
-custom_styles/selected_focus = SubResource( 6 )
-custom_styles/bg_focus = SubResource( 5 )
-custom_styles/selected = SubResource( 6 )
-custom_styles/bg = SubResource( 5 )
+custom_styles/selected_focus = SubResource( 2 )
+custom_styles/bg_focus = SubResource( 3 )
+custom_styles/selected = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 custom_colors/guide_color = Color( 0.301961, 0.301961, 0.301961, 1 )
 custom_constants/vseparation = 6
 items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false, "Item 11", null, false, "Item 12", null, false, "Item 13", null, false, "Item 14", null, false, "Item 15", null, false, "Item 16", null, false, "Item 17", null, false, "Item 18", null, false, "Item 19", null, false, "Item 20", null, false, "Item 21", null, false, "Item 22", null, false, "Item 23", null, false, "Item 24", null, false, "Item 25", null, false, "Item 26", null, false, "Item 27", null, false, "Item 28", null, false, "Item 29", null, false, "Item 30", null, false, "Item 31", null, false, "Item 32", null, false, "Item 33", null, false, "Item 34", null, false ]
@@ -189,13 +189,13 @@ margin_right = 240.0
 margin_bottom = 568.0
 rect_min_size = Vector2( 240, 0 )
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="PreviewPanel" type="PanelContainer" parent="HBoxContainer"]
 margin_left = 528.0
 margin_right = 800.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 6 )
 
 [node name="Margin" type="MarginContainer" parent="HBoxContainer/PreviewPanel"]
 margin_right = 272.0
@@ -210,10 +210,12 @@ __meta__ = {
 }
 
 [node name="OutputPanel" parent="HBoxContainer/PreviewPanel/Margin" instance=ExtResource( 5 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 256.0
-margin_bottom = 32.0
+margin_bottom = 216.0
 
 [node name="ExportPopup" parent="." instance=ExtResource( 6 )]
 [connection signal="property_list_updated" from="." to="HBoxContainer/PreviewPanel/Margin/OutputPanel" method="_on_Main_property_list_updated"]

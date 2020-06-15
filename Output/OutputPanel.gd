@@ -1,73 +1,42 @@
 extends PanelContainer
 
-const LABEL_WIDTH = 48
-const CONTROL_WIDTH = 172
+export (PackedScene) var ControlScene
 
 onready var vbox: = $VBoxContainer
 
 var state: = {}
 
 
-func create_controls(property_list: Array) -> void:
-	_clear()
-	for prop in property_list:
-#		if _check_condition(prop, property_list):
-		var control: = _create_property_control(prop.name, prop.type, prop.meta)
-		vbox.add_child(control)
-
-
-func _check_condition(property: Dictionary, property_list: Array) -> bool:
-	var condition_state: bool
-	var condition = property.condition
-
-	for prop in property_list:
-		if condition.has(prop.name) and condition[prop.name] == prop.value:
-			condition_state = true
-
-	return condition_state
-
-
-func _clear() -> void:
+func _ready() -> void:
 	for child in vbox.get_children():
 		child.queue_free()
 
 
-func _create_property_control(
-			property: String,
-			type: int,
-			meta: Dictionary) -> Control:
-	var container: = HBoxContainer.new()
+func update_controls(property_list: Array) -> void:
+	for i in range(0, property_list.size()):
+		if vbox.get_child_count() >= i+1:
+			vbox.get_child(i).update_control(property_list[i])
+		else:
+			var control: TypeControl = ControlScene.instance()
+			vbox.add_child(control)
+			control.update_control(property_list[i])
 
-	var label: = Label.new()
-	var control: Control
+#		if _check_condition(prop, property_list):
+#		var control: = _create_property_control(prop.name, prop.type, prop.meta)
 
-	label.text = property
-
-	match type:
-		Main.DataTypes.BOOLEAN:
-			control = CheckBox.new() as CheckBox
-			control.pressed = meta.enabled
-		Main.DataTypes.OPTION:
-			control = OptionButton.new() as OptionButton
-			var options = meta.options.split(', ')
-			for option in options:
-				control.add_item(option)
-			control.selected = meta.default
-		Main.DataTypes.NUMBER:
-			control = SpinBox.new() as SpinBox
-
-	label.rect_min_size.x = LABEL_WIDTH
-	label.clip_text = true
-	control.rect_min_size.x = CONTROL_WIDTH
-
-	container.add_child(label)
-	container.add_child(control)
-
-	return container
+#func _check_condition(property: Dictionary, property_list: Array) -> bool:
+#	var condition_state: bool
+#	var condition = property.condition
+#
+#	for prop in property_list:
+#		if condition.has(prop.name) and condition[prop.name] == prop.value:
+#			condition_state = true
+#
+#	return condition_state
 
 
 # SIGNAL CALLBACKS =============================================================
 
 
 func _on_Main_property_list_updated(property_list) -> void:
-	create_controls(property_list)
+	update_controls(property_list)

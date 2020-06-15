@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TypeControl/TypeControl.gd" type="Script" id=1]
+
+[node name="TypeControl" type="HBoxContainer"]
+anchor_left = -0.000330257
+anchor_right = -0.000330257
+anchor_bottom = 3.17891e-09
+margin_left = 0.264206
+margin_top = -0.264198
+margin_right = 224.264
+margin_bottom = 23.7358
+custom_constants/separation = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+type = 0
+
+[node name="Label" type="Label" parent="."]
+margin_right = 48.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 48, 24 )
+text = "Property"
+valign = 1
+autowrap = true
+clip_text = true

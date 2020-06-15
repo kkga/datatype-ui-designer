@@ -7,40 +7,23 @@ signal property_deleted(property)
 
 signal property_list_updated(property_list)
 
-onready var export_popup: = $ExportPopup
+onready var export_popup := $ExportPopup
 
-onready var prop_item_list: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList
-onready var add_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddBtn
-onready var delete_button: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteBtn
-onready var prop_config: = $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
+onready var prop_item_list := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/PropertyItemList
+onready var add_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/AddBtn
+onready var delete_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/DeleteBtn
+onready var prop_config := $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
 
 enum DataTypes { BOOLEAN, OPTION, NUMBER }
 
-var property_list: = []
+var property_list := []
 
-var property_dict_base: = {
-	name = "",
-	type = 0,
-	meta = {},
-	condition = {
-		"Condition": true
-	}
-}
-var meta_dict_base: = {
-	boolean = {
-		enabled = false
-	},
-	option = {
-		options = "one, two, three",
-		default = 0
-	},
-	number = {
-		min = 0,
-		max = 10,
-		step = 1,
-		default = 0,
-		use_slider = true
-	}
+var property_dict_base := {name = "", type = 1, meta = {}, condition = {"Condition": true}}
+
+var meta_dict_base := {
+	boolean = {enabled = false},
+	option = {options = "one, two, three", default = 0},
+	number = {min = 0, max = 1000, step = 1, default = 0, use_slider = false}
 }
 
 
@@ -52,10 +35,10 @@ func _ready() -> void:
 
 
 func add_property() -> void:
-	var new_property: = property_dict_base.duplicate()
+	var new_property := property_dict_base.duplicate()
 	new_property.name = "new property"
-	new_property.type = DataTypes.BOOLEAN
-	new_property.meta  = meta_dict_base.boolean.duplicate()
+	new_property.type = DataTypes.OPTION
+	new_property.meta = meta_dict_base.option.duplicate()
 
 	property_list.append(new_property)
 
@@ -71,7 +54,7 @@ func delete_property() -> void:
 	emit_signal("property_list_updated", property_list)
 
 
-func update_property(index:int, config_property: String, value) -> void:
+func update_property(index: int, config_property: String, value) -> void:
 	var selected_property = property_list[index]
 
 	match config_property:
@@ -135,8 +118,8 @@ func _on_property_list_updated(property_list) -> void:
 
 func _on_property_added(property) -> void:
 	prop_item_list.add_item(property.name)
-	prop_item_list.select(prop_item_list.get_item_count()-1)
-	handle_selection(prop_item_list.get_item_count()-1)
+	prop_item_list.select(prop_item_list.get_item_count() - 1)
+	handle_selection(prop_item_list.get_item_count() - 1)
 
 
 func _on_property_changed(property) -> void:
