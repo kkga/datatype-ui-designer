@@ -4,7 +4,7 @@ export (PackedScene) var ControlScene
 
 onready var vbox: = $VBoxContainer
 
-var state: = {}
+var current_state: = {} setget , get_current_state
 
 
 func _ready() -> void:
@@ -21,18 +21,29 @@ func update_controls(property_list: Array) -> void:
 			vbox.add_child(control)
 			control.update_control(property_list[i])
 
-#		if _check_condition(prop, property_list):
-#		var control: = _create_property_control(prop.name, prop.type, prop.meta)
 
-#func _check_condition(property: Dictionary, property_list: Array) -> bool:
-#	var condition_state: bool
-#	var condition = property.condition
-#
-#	for prop in property_list:
-#		if condition.has(prop.name) and condition[prop.name] == prop.value:
-#			condition_state = true
-#
-#	return condition_state
+func update_conditional_visibility() -> void:
+	return
+	for child in vbox.get_children():
+		child.show()
+		if child.conditions.empty():
+			continue
+		else:
+			for condition in child.conditions:
+				if self.current_state.has(condition.property):
+					if child.property_value == condition.value:
+						child.hide()
+#		NEXT STEPS: figure out how to compare enum ints and condition string values
+
+
+# SETGET =======================================================================
+
+
+func get_current_state() -> Dictionary:
+	var state = {}
+	for child in vbox.get_children():
+		state[child.property_name] = child.property_value
+	return state
 
 
 # SIGNAL CALLBACKS =============================================================
@@ -40,3 +51,4 @@ func update_controls(property_list: Array) -> void:
 
 func _on_Main_property_list_updated(property_list) -> void:
 	update_controls(property_list)
+	update_conditional_visibility()

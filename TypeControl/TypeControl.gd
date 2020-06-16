@@ -13,6 +13,7 @@ var meta: Dictionary = {}
 
 var property_name: String
 var property_value setget , get_property_value
+var conditions := []
 
 
 func _ready() -> void:
@@ -22,6 +23,8 @@ func _ready() -> void:
 func update_control(property: Dictionary) -> void:
 	label.text = property.name
 	property_name = property.name
+
+	conditions = property.conditions
 
 	if not type == property.type:
 		self.type = property.type

@@ -80,23 +80,23 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 512.0
 margin_bottom = 584.0
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PropListContainer" type="VBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 568.0
-rect_min_size = Vector2( 232, 0 )
+rect_min_size = Vector2( 220, 0 )
 custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 24.0
 custom_constants/separation = -1
 
@@ -109,8 +109,8 @@ __meta__ = {
 }
 
 [node name="MoveUpBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 131.0
-margin_right = 158.0
+margin_left = 119.0
+margin_right = 146.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 size_flags_horizontal = 10
@@ -122,8 +122,8 @@ __meta__ = {
 }
 
 [node name="MoveDownBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 157.0
-margin_right = 184.0
+margin_left = 145.0
+margin_right = 172.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 size_flags_horizontal = 0
@@ -134,8 +134,8 @@ __meta__ = {
 }
 
 [node name="DeleteBtn" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer"]
-margin_left = 183.0
-margin_right = 232.0
+margin_left = 171.0
+margin_right = 220.0
 margin_bottom = 24.0
 size_flags_horizontal = 0
 disabled = true
@@ -146,7 +146,7 @@ __meta__ = {
 
 [node name="PropertyItemList" type="ItemList" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
 margin_top = 32.0
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 536.0
 grow_vertical = 0
 size_flags_vertical = 3
@@ -164,28 +164,29 @@ script = ExtResource( 4 )
 
 [node name="ExportButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer"]
 margin_top = 544.0
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 568.0
 text = "Export to JSON"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]
-margin_left = 240.0
-margin_right = 248.0
+margin_left = 228.0
+margin_right = 236.0
 margin_bottom = 568.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="PropConfigContainer" type="VBoxContainer" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]
-margin_left = 256.0
+margin_left = 244.0
 margin_right = 496.0
 margin_bottom = 568.0
 rect_min_size = Vector2( 240, 0 )
+size_flags_horizontal = 3
 custom_constants/separation = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PropertyConfig" parent="HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer" instance=ExtResource( 3 )]
-margin_right = 240.0
+margin_right = 252.0
 margin_bottom = 568.0
 rect_min_size = Vector2( 240, 0 )
 size_flags_vertical = 3

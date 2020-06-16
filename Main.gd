@@ -120,11 +120,11 @@ func add_condition(property_index: int, condition: Dictionary) -> void:
 
 func handle_selection(index) -> void:
 	var selected_property = property_list[index]
-	print(selected_property.conditions)
+#	print(selected_property.conditions)
 
 	prop_config.show()
 	prop_config.update_fields(selected_property)
-	prop_config.update_rules(selected_property.conditions)
+	prop_config.update_rules(selected_property.conditions, property_list)
 	delete_button.disabled = false
 
 
@@ -133,7 +133,7 @@ func handle_selection(index) -> void:
 
 func _on_property_list_updated(_property_list) -> void:
 	return
-	print(_property_list)
+#	print(_property_list)
 
 
 func _on_property_added(property) -> void:
@@ -195,7 +195,9 @@ func _on_PropertyConfig_rule_changed(condition_index: int, condition: Dictionary
 
 func _on_PropertyConfig_rule_added(condition) -> void:
 	var selected_item: int = prop_item_list.get_selected_items()[0]
+	var selected_property = property_list[selected_item]
 	add_condition(selected_item, condition)
+	prop_config.update_rules(selected_property.conditions, property_list)
 
 
 func _on_ExportButton_pressed() -> void:

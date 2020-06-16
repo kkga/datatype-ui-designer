@@ -6,7 +6,7 @@ signal rule_added(condition)
 signal rule_deleted(index)
 
 const DEFAULT_CONDITION := {
-	property = "Display",
+	property = "",
 	comparison = "Is",
 	value = "Grid"
 }
@@ -63,26 +63,26 @@ func update_fields(property: Dictionary) -> void:
 			number_slider_btn.pressed = property.meta.use_slider
 
 
-func update_rules(conditions: Array) -> void:
+func update_rules(conditions: Array, property_list: Array) -> void:
 	for rule in rules_container.get_children():
 		rule.queue_free()
 	yield(get_tree(), "idle_frame")
 	for i in range(0, conditions.size()):
 		if rules_container.get_child_count() >= i+1:
-			rules_container.get_child(i).setup(conditions[i])
+			rules_container.get_child(i).setup(conditions[i], property_list)
 		else:
-			create_rule(conditions[i])
+			create_rule(conditions[i], property_list)
 
 
-func create_rule(condition: Dictionary):
+func create_rule(condition: Dictionary, property_list: Array):
 	var rule = RuleContainerScene.instance()
 	rules_container.add_child(rule)
-	rule.setup(condition)
+	rule.setup(condition, property_list)
 	rule.connect("condition_changed", self, "_on_Rule_condition_changed", [rule])
 
 
 func add_rule():
-	create_rule(DEFAULT_CONDITION)
+#	create_rule(DEFAULT_CONDITION)
 	emit_signal("rule_added", DEFAULT_CONDITION)
 
 
@@ -149,5 +149,5 @@ func _on_AddRuleButton_pressed() -> void:
 
 
 func _on_Rule_condition_changed(condition: Dictionary, rule_node) -> void:
-	print(condition)
+#	print(condition)
 	emit_signal("rule_changed", rule_node.get_index(), condition)
