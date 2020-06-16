@@ -8,7 +8,7 @@ signal rule_deleted(index)
 const DEFAULT_CONDITION := {
 	property = "",
 	comparison = "Is",
-	value = "Grid"
+	value = "one"
 }
 
 export (PackedScene) var RuleContainerScene

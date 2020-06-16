@@ -1,6 +1,8 @@
 extends HBoxContainer
 class_name TypeControl
 
+signal value_changed()
+
 const LABEL_WIDTH = 48
 const CONTROL_SIZE = Vector2(172, 24)
 
@@ -38,6 +40,7 @@ func update_control(property: Dictionary) -> void:
 		Main.DataTypes.BOOLEAN:
 			var checkbox = control as CheckBox
 			checkbox.pressed = meta.enabled
+
 		Main.DataTypes.OPTION:
 			var option_btn = control as OptionButton
 			var options = meta.options.split(', ')
@@ -45,6 +48,7 @@ func update_control(property: Dictionary) -> void:
 			for option in options:
 				option_btn.add_item(option)
 			option_btn.selected = meta.default
+
 		Main.DataTypes.NUMBER:
 			var spinbox = control as SpinBox
 			spinbox.value = meta.default
@@ -52,6 +56,7 @@ func update_control(property: Dictionary) -> void:
 			spinbox.max_value = meta.max
 			spinbox.step = meta.step
 			spinbox.suffix = meta.suffix
+
 #			TODO: add slider functionality
 
 
@@ -64,10 +69,13 @@ func _change_control(control_type: int) -> void:
 	match control_type:
 		Main.DataTypes.BOOLEAN:
 			new_control = CheckBox.new()
+			new_control.connect("pressed", self, "_on_value_changed")
 		Main.DataTypes.OPTION:
 			new_control = OptionButton.new()
+			new_control.connect("item_selected", self, "_on_value_changed")
 		Main.DataTypes.NUMBER:
 			new_control = SpinBox.new()
+			new_control.connect("changed", self, "_on_value_changed")
 	new_control.name = "Control"
 	add_child(new_control)
 	control = new_control
@@ -94,3 +102,9 @@ func get_property_value():
 			value = control.selected
 
 	return value
+
+
+# SIGNAL CALLBACKS =============================================================
+
+func _on_value_changed(value) -> void:
+	emit_signal("value_changed")

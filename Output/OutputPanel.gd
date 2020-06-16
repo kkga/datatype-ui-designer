@@ -23,6 +23,7 @@ func update_controls(property_list: Array) -> void:
 			var control: TypeControl = ControlScene.instance()
 			vbox.add_child(control)
 			control.update_control(property_list[i])
+			control.connect("value_changed", self, "_on_Control_value_changed")
 
 
 func update_conditional_visibility() -> void:
@@ -34,13 +35,16 @@ func update_conditional_visibility() -> void:
 			child.hide()
 			for condition in child.conditions:
 				if self.current_state.has(condition.property):
+					var conditional_control = vbox.get_child(self.current_state.keys().find(condition.property))
 					for i in range(0, _property_list.size()):
 						if _property_list[i].name == condition.property:
 							var property_options = []
 							var option_strings = _property_list[i].meta.options.split(', ')
 							for string in option_strings:
 								property_options.append(string)
-							if child.property_value == property_options.find(condition.value):
+
+							printt(conditional_control.property_value, property_options.find(condition.value))
+							if conditional_control.property_value == property_options.find(condition.value):
 								child.show()
 
 
@@ -51,6 +55,7 @@ func get_current_state() -> Dictionary:
 	var state = {}
 	for child in vbox.get_children():
 		state[child.property_name] = child.property_value
+	print(state)
 	return state
 
 
@@ -59,4 +64,9 @@ func get_current_state() -> Dictionary:
 
 func _on_Main_property_list_updated(property_list) -> void:
 	update_controls(property_list)
+	update_conditional_visibility()
+
+
+func _on_Control_value_changed() -> void:
+	update_controls(_property_list)
 	update_conditional_visibility()

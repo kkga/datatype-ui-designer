@@ -38,6 +38,7 @@ func _update_value_options(property_name: String) -> void:
 		value_field.add_item(option)
 
 	value_field.selected = options.find(_condition.value)
+	emit_signal("condition_changed", _condition)
 
 
 func _update_condition_value(selected_id) -> void:
