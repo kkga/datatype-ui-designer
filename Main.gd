@@ -15,6 +15,7 @@ onready var delete_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropL
 onready var move_up_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveUpBtn
 onready var move_down_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/HBoxContainer/MoveDownBtn
 onready var prop_config := $HBoxContainer/Panel/MarginContainer/LeftSide/PropConfigContainer/PropertyConfig
+onready var export_button := $HBoxContainer/Panel/MarginContainer/LeftSide/PropListContainer/ExportButton
 
 enum DataTypes { BOOLEAN, OPTION, NUMBER }
 
@@ -126,6 +127,10 @@ func handle_selection(index) -> void:
 	prop_config.update_fields(selected_property)
 	prop_config.update_rules(selected_property.conditions, property_list)
 	delete_button.disabled = false
+	move_down_button.disabled = false
+	move_up_button.disabled = false
+	export_button.disabled = false
+
 
 
 # SIGNAL CALLBACKS =============================================================

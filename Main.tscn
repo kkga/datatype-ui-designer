@@ -166,6 +166,7 @@ script = ExtResource( 4 )
 margin_top = 544.0
 margin_right = 220.0
 margin_bottom = 568.0
+disabled = true
 text = "Export to JSON"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/Panel/MarginContainer/LeftSide"]

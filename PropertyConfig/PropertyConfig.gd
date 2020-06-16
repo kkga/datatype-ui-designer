@@ -37,6 +37,10 @@ onready var number_suffix_field := $MarginContainer/VBoxContainer/Number/HBoxCon
 onready var number_slider_btn := $MarginContainer/VBoxContainer/Number/HBoxContainer3/NumberShowSlider
 
 
+func _ready() -> void:
+	hide()
+
+
 func update_fields(property: Dictionary) -> void:
 	boolean_settings.hide()
 	option_settings.hide()
