@@ -6,6 +6,8 @@ onready var vbox: = $VBoxContainer
 
 var current_state: = {} setget , get_current_state
 
+var _property_list: Array
+
 
 func _ready() -> void:
 	for child in vbox.get_children():
@@ -13,6 +15,7 @@ func _ready() -> void:
 
 
 func update_controls(property_list: Array) -> void:
+	_property_list = property_list
 	for i in range(0, property_list.size()):
 		if vbox.get_child_count() >= i+1:
 			vbox.get_child(i).update_control(property_list[i])
@@ -23,17 +26,22 @@ func update_controls(property_list: Array) -> void:
 
 
 func update_conditional_visibility() -> void:
-	return
 	for child in vbox.get_children():
 		child.show()
 		if child.conditions.empty():
 			continue
 		else:
+			child.hide()
 			for condition in child.conditions:
 				if self.current_state.has(condition.property):
-					if child.property_value == condition.value:
-						child.hide()
-#		NEXT STEPS: figure out how to compare enum ints and condition string values
+					for i in range(0, _property_list.size()):
+						if _property_list[i].name == condition.property:
+							var property_options = []
+							var option_strings = _property_list[i].meta.options.split(', ')
+							for string in option_strings:
+								property_options.append(string)
+							if child.property_value == property_options.find(condition.value):
+								child.show()
 
 
 # SETGET =======================================================================
