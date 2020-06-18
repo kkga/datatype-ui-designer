@@ -106,5 +106,5 @@ func get_property_value():
 
 # SIGNAL CALLBACKS =============================================================
 
-func _on_value_changed(value) -> void:
+func _on_value_changed(_value) -> void:
 	emit_signal("value_changed")
